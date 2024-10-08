@@ -9,7 +9,7 @@ use std::iter;
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: 絶対値
 pub fn knock_10(a: &str) -> isize {
-    todo!()
+    a.parse::<isize>().unwrap().abs()
 }
 
 #[cfg(test)]
@@ -45,7 +45,17 @@ mod tests_10 {
 ///
 /// - 戻り値: `"Hello World!"` を改行区切りで 10 個繋いだ文字列
 pub fn knock_11() -> String {
-    todo!()
+    let mut v: Vec<String> = Vec::new();
+    for _ in 0..10 {
+        v.push("Hello World!".to_string());
+    }
+    v.join("\n")
+
+    // let mut v: Vec<&str> = Vec::new();
+    // for _ in 0..10 {
+    //     v.push("Hello World!");
+    // }
+    // v.iter().map(std::string::ToString::to_string).collect::<Vec<String>>().join("\n")
 }
 
 #[cfg(test)]
@@ -80,7 +90,11 @@ Hello World!",
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: `"Hello World!"` を引数分改行区切りで繋いだ文字列
 pub fn knock_12(s: &str) -> String {
-    todo!()
+    let mut v: Vec<String> = Vec::new();
+    for _ in 0..s.parse::<i32>().unwrap() {
+        v.push("Hello World!".to_string());
+    }
+    v.join("\n")
 }
 
 #[cfg(test)]
@@ -108,7 +122,11 @@ Hello World!",
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: 0 から入力値までを改行区切りで繋いだ文字列
 pub fn knock_13(i: &str) -> String {
-    todo!()
+    let mut v: Vec<String> = Vec::new();
+    for j in 0..=i.parse::<i32>().unwrap() {
+        v.push(j.to_string());
+    }
+    v.join("\n")
 }
 
 #[cfg(test)]
@@ -137,7 +155,11 @@ mod tests_13 {
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: 入力値から 0 までを改行区切りで繋いだ文字列
 pub fn knock_14(s: &str) -> String {
-    todo!()
+    let mut v: Vec<String> = Vec::new();
+    for i in (0..=s.parse::<i32>().unwrap()).rev() {
+        v.push(i.to_string());
+    }
+    v.join("\n")
 }
 
 #[cfg(test)]
@@ -166,7 +188,11 @@ mod tests_14 {
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: 0 から入力値を超えない値まで2ずつ増やして改行区切りで繋いだ文字列
 pub fn knock_15(i: &str) -> String {
-    todo!()
+    let mut v: Vec<String> = Vec::new();
+    for j in (0..=i.parse::<i32>().unwrap()).filter(|x| x%2==0) {
+        v.push(j.to_string());
+    }
+    v.join("\n")
 }
 
 #[cfg(test)]
@@ -202,7 +228,11 @@ pub fn knock_16() {
 ///
 /// - 戻り値: i 番目の要素の初期値が i となる要素数 10 の配列
 pub fn knock_17() -> [usize; 10] {
-    todo!()
+    let mut a = [0_usize; 10];
+    for i in 0..10_usize {
+        a[i] = i;
+    }
+    a
 }
 
 #[cfg(test)]
@@ -227,7 +257,11 @@ mod tests_17 {
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: 全ての要素が入力値である要素数 10 の配列
 pub fn knock_18(s: &str) -> [usize; 10] {
-    todo!()
+    let mut a = [0; 10];
+    for i in 0..10 {
+        a[i] = s.parse::<usize>().unwrap();
+    }
+    a
 }
 
 #[cfg(test)]
@@ -252,7 +286,11 @@ mod tests_18 {
 /// - 引数: 整数値 5 つをスペースで区切った文字列参照
 /// - 戻り値: 入力値を順に要素に持つサイズ 5 の配列
 pub fn knock_19(s: &str) -> [usize; 5] {
-    todo!()
+    let mut a = [0; 5];
+    for (idx, si) in s.split(' ').map(|x| x.parse::<usize>().unwrap()).enumerate() {
+        a[idx] = si;
+    }
+    a
 }
 
 #[cfg(test)]
