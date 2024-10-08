@@ -6,7 +6,7 @@
 ///
 /// - 戻り値: `"Hello, World!"`
 pub fn knock_00() -> String {
-    todo!()
+    "Hello, World!".to_string()
 }
 
 #[cfg(test)]
@@ -29,7 +29,7 @@ mod tests_00 {
 ///
 /// - 戻り値: `12345 + 23456` の計算結果
 pub fn knock_01() -> usize {
-    todo!()
+    12345 + 23456
 }
 
 #[cfg(test)]
@@ -52,7 +52,7 @@ mod tests_01 {
 ///
 /// - 戻り値: 12345 を 7 で割った余り
 pub fn knock_02() -> usize {
-    todo!()
+    12345 % 7
 }
 
 #[cfg(test)]
@@ -78,7 +78,7 @@ mod tests_02 {
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: 整数値
 pub fn knock_03(a: &str) -> i32 {
-    todo!()
+    a.parse::<i32>().unwrap()
 }
 
 #[cfg(test)]
@@ -104,7 +104,7 @@ mod tests_03 {
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: 整数値に 3 足した結果
 pub fn knock_04(a: &str) -> i32 {
-    todo!()
+    a.parse::<i32>().unwrap() * 3
 }
 
 #[cfg(test)]
@@ -130,7 +130,9 @@ mod tests_04 {
 /// - 引数: 二つの整数値をスペース区切りにした文字列参照
 /// - 戻り値: 長さ 5 の配列 `[和, 差, 積, 商, 余り]`
 pub fn knock_05(a: &str, b: &str) -> [i32; 5] {
-    todo!()
+    let x = a.parse::<i32>().unwrap();
+    let y = b.parse::<i32>().unwrap();
+    [x+y, x-y, x*y, x/y, x%y]
 }
 
 #[cfg(test)]
@@ -163,7 +165,16 @@ mod tests_05 {
 ///   - 値が 0 => `Some(0)`
 ///   - それ以外 => `None`
 pub fn knock_06(a: &str) -> Option<String> {
-    todo!()
+    // match a.parse::<i32>().unwrap() {
+    //     0 => Some("zero".to_string()),
+    //     _ => None
+    // }
+
+    if a.parse::<i32>().unwrap() == 0 {
+        Some("zero".to_string())
+    } else {
+        None
+    }
 }
 
 #[cfg(test)]
@@ -194,7 +205,11 @@ mod tests_06 {
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: 入力値が 0 なら `"zero"`, 0 でなければ `"not zero"`
 pub fn knock_07(a: &str) -> String {
-    todo!()
+    if a.parse::<i32>().unwrap() == 0{
+        "zero".to_string()
+    } else {
+        "not zero".to_string()
+    }
 }
 
 #[cfg(test)]
@@ -227,7 +242,11 @@ mod tests_07 {
 ///   - 正の値の場合は `Some`
 ///   - それ以外の場合は `None`
 pub fn knock_08(a: &str) -> Option<String> {
-    todo!()
+    if a.parse::<i32>().unwrap() > 0 {
+        Some("positive".to_string())
+    } else {
+        None
+    }
 }
 
 #[cfg(test)]
@@ -268,7 +287,14 @@ mod tests_08 {
 ///   - 0: `"zero"`
 ///   - 負の値: `"negative"`
 pub fn knock_09(a: &str) -> String {
-    todo!()
+    let x: i32 = a.parse().unwrap();
+    if x > 0 {
+        "positive".to_string()
+    } else if x == 0 {
+        "zero".to_string()
+    } else {
+        "negative".to_string()
+    }
 }
 
 #[cfg(test)]
