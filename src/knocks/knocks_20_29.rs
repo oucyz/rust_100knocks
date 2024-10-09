@@ -11,7 +11,10 @@ use crate::parse::parse_sep;
 /// - 引数: 整数値 2 つをスペースで区切った文字列参照
 /// - 戻り値: (1つめの値を2つめの値で割った結果, その結果に2つめの値を掛けた結果)
 pub fn knock_20(s: &str) -> (usize, usize) {
-    todo!()
+    let v = s.split(" ").map(|x| x.parse().unwrap()).collect::<Vec<usize>>();
+    let a: usize = v[0];
+    let b: usize = v[1];
+    (a / b, a / b * b)
 }
 
 #[cfg(test)]
@@ -37,7 +40,12 @@ mod tests_20 {
 ///   - 入力値が 5 より大きく 20 より小さければ `Some(String)`
 ///   - それ以外は None
 pub fn knock_21(s: &str) -> Option<String> {
-    todo!()
+    let num = s.parse::<usize>().unwrap();
+    if 5 < num && num < 20 {
+        Some("OK".to_string())
+    } else {
+        None
+    }
 }
 
 #[cfg(test)]
@@ -84,7 +92,12 @@ mod tests_21 {
 ///   - 入力値が -10　以下または 10 以上であれば `Some(String)`
 ///   - それ以外は None
 pub fn knock_22(s: &str) -> Option<String> {
-    todo!()
+    let n = s.parse::<i32>().unwrap();
+    if n <= -10 || 10 <= n {
+        Some("OK".to_string())
+    } else {
+        None
+    }
 }
 
 #[cfg(test)]
@@ -131,7 +144,12 @@ mod tests_22 {
 ///   - 入力値が -5 以上 10 未満であれば `"OK"`
 ///   - それ以外は `"NG"`
 pub fn knock_23(s: &str) -> String {
-    todo!()
+    let n = s.parse().unwrap();
+    if -5 <= n && n < 10 {
+        "OK".to_string()
+    } else {
+        "NG".to_string()
+    }
 }
 
 #[cfg(test)]
@@ -179,7 +197,12 @@ mod tests_23 {
 ///   - 入力値が -10 以上 0 未満、または、10 以上であれば `"OK"`
 ///   - それ以外は `"NG"`
 pub fn knock_24(s: &str) -> String {
-    todo!()
+    let n = s.parse().unwrap();
+    if (-10 <= n && n < 0) || 10 <= n {
+        "OK".to_string()
+    } else {
+        "NG".to_string()
+    }
 }
 
 #[cfg(test)]
@@ -243,7 +266,14 @@ mod tests_24 {
 ///   - -10 以上 0 未満であれば `"range 2"`
 ///   - 0 以上であれば `"range 3"`
 pub fn knock_25(s: &str) -> String {
-    todo!()
+    let n = s.parse().unwrap();
+    if n < -10 {
+        "range1".to_string()
+    } else if -10 <= n && n < 0 {
+        "range2".to_string()
+    } else {
+        "range3".to_string()
+    }
 }
 
 #[cfg(test)]
@@ -292,7 +322,13 @@ mod tests_25 {
 ///   - -10 以上 0 未満であれば `"range 2"`
 ///   - 0 以上であれば `"range 3"`
 pub fn knock_26(s: &str) -> String {
-    todo!()
+    let n = s.parse::<i32>().unwrap();
+    match n {
+        1 => "one".to_string(),
+        2 => "two".to_string(),
+        3 => "three".to_string(),
+        _ => "others".to_string(),
+    }
 }
 
 #[cfg(test)]
@@ -338,8 +374,17 @@ mod tests_26 {
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: 1 から入力値までの総和
 pub fn knock_27(s: &str) -> usize {
-    todo!()
-}
+    let n = s.parse::<i32>().unwrap();
+    let mut ans = 0;
+    if n <= 0 {
+        ans
+    } else {
+        for i in 0..=n {
+            ans += i as usize;
+        }
+        ans
+    }
+} 
 
 #[cfg(test)]
 mod tests_27 {
@@ -370,7 +415,16 @@ mod tests_27 {
 /// - 引数: 整数値の文字列参照
 /// - 戻り値: 入力値の階乗
 pub fn knock_28(s: &str) -> usize {
-    todo!()
+    let n = s.parse::<i64>().unwrap();
+    let mut ans = 1;
+    if n <= 0 {
+        1
+    } else {
+        for i in 1..=n {
+            ans *= i
+        }
+        ans as usize
+    }
 }
 
 #[cfg(test)]
@@ -401,7 +455,12 @@ mod tests_28 {
 /// - 引数: 整数値 5 つをスペースで区切った文字列参照
 /// - 戻り値: 入力値の合計
 pub fn knock_29(s: &str) -> isize {
-    todo!()
+    let v = s.split(' ').map(|x| x.parse::<isize>().unwrap());
+    let mut ans = 0;
+    for i in v {
+        ans += i;
+    }
+    ans
 }
 
 #[cfg(test)]
