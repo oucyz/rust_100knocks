@@ -5,7 +5,15 @@ use crate::parse::parse_sep;
 /// 整数値を入力させ、その個数だけ*を表示するプログラムを作成せよ。
 /// 入力値が0以下の値の場合は何も書かなくてよい。
 pub fn knock_30(s: &str) -> Option<String> {
-    todo!()
+    let n = s.parse().unwrap();
+    let mut ans = String::new();
+    for _ in 0..n {
+        ans.push('*');
+    }
+    match n {
+        ..=0 => None,
+        _ => Some(ans),
+    }
 }
 
 #[cfg(test)]
@@ -32,7 +40,18 @@ mod tests_30 {
 /// 整数値を入力させ、その個数だけ*を、5個おきに空白（スペース）を入れて表示するプログラムを作成せよ。
 /// 入力値が0以下の値の場合は何も書かなくてよい。
 pub fn knock_31(s: &str) -> Option<String> {
-    todo!()
+    let n = s.parse().unwrap();
+    let mut ans = String::new();
+    for i in 0..n {
+        if i != 0 && i%5 == 0 {
+            ans.push(' ');
+        }
+        ans.push('*');
+    }
+    match n {
+        ..=0 => None,
+        _ => Some(ans),
+    }
 }
 
 #[cfg(test)]
@@ -58,7 +77,16 @@ mod tests_31 {
 ///
 /// 1から20まで順に表示するが、5の倍数の場合は数字の代わりにbarと表示するプログラムを作成せよ。
 pub fn knock_32(s: &str) -> Vec<String> {
-    todo!()
+    let n = s.parse().unwrap();
+    let mut v: Vec<String> = Vec::new();
+    for i in 1..=n {
+        if i%5 == 0 {
+            v.push("bar".to_string());
+        } else {
+            v.push(i.to_string());
+        }
+    }
+    v
 }
 
 #[cfg(test)]
@@ -89,7 +117,13 @@ mod tests_32 {
 ///
 /// 整数値を入力させ、1から9まで、入力値以外を表示するプログラムを作成せよ。
 pub fn knock_33(s: &str) -> Vec<usize> {
-    todo!()
+    let n = s.parse().unwrap();
+    let mut v: Vec<usize> = Vec::new();
+    for i in 1..=9 {
+        if i == n {continue}
+        else {v.push(i)}
+    }
+    v
 }
 
 #[cfg(test)]
@@ -109,7 +143,13 @@ mod tests_33 {
 /// 整数値を入力させ、1から9まで、入力値と入力値+1以外を表示するプログラムを作成せよ。
 /// 入力値が9の場合は9のみ表示しない。
 pub fn knock_34(s: &str) -> Vec<usize> {
-    todo!()
+    let mut v = Vec::new();
+    let num = s.parse::<usize>().unwrap();
+    for i  in 1..=9 {
+        if i == num || i == num +1 {continue;}
+        v.push(i);
+    }
+    v
 }
 
 #[cfg(test)]
@@ -137,7 +177,8 @@ mod tests_34 {
 /// 整数値を入力させ、要素番号が入力値である配列要素の値を表示するプログラムを作成せよ。
 /// 入力値が配列の要素の範囲外であるかどうかのチェックは省略してよい。
 pub fn knock_35(s: &str) -> u8 {
-    todo!()
+    let a = [3, 7, 0, 8, 4, 1, 9, 6, 5, 2_u8];
+    a[s.parse::<usize>().unwrap()]
 }
 
 #[cfg(test)]
@@ -158,7 +199,9 @@ mod tests_35 {
 /// 整数値を2つ入力させ、要素番号が入力値である2つの配列要素の値の積を計算して表示するプログラムを作成せよ。
 /// 入力値が配列の要素の範囲外であるかどうかのチェックは省略してよい。
 pub fn knock_36(s: &str) -> usize {
-    todo!()
+    let v = parse_sep::<usize>(s, ' ');
+    let a = [3, 7, 0, 8, 4, 1, 9, 6, 5, 2];
+    a[v[0]] * a[v[1]]
 }
 
 #[cfg(test)]
@@ -205,7 +248,14 @@ mod tests_37 {
 /// ……を10回繰り返すプログラムを作成せよ。
 /// （具体的にどのような手順かは実行例を見て考えよう。）
 pub fn knock_38() -> [u8; 10] {
-    todo!()
+    let a = [3_usize, 7, 0, 8, 4, 1, 9, 6, 5, 2];
+    let mut ans = [0; 10];
+    let mut idx = 0;
+    for i in 0..10 {
+        ans[i] = a[idx] as u8;
+        idx = a[idx];
+    }
+    ans
 }
 
 #[cfg(test)]
